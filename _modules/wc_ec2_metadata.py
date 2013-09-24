@@ -22,6 +22,7 @@ def get_public_dns():
     output = f.read()
   except Exception as e:
     log.exception(e)
+    return "Error: %s" % e
   return output
 
 def get_public_ipv4():
@@ -36,6 +37,7 @@ def get_public_ipv4():
     output = f.read()
   except Exception as e:
     log.exception(e)
+    return "Error: %s" % e
   return output
 
 def get_instance_id():
@@ -50,6 +52,7 @@ def get_instance_id():
     output = f.read()
   except Exception as e:
     log.exception(e)
+    return "Error: %s" % e
   return output
 
 def get_placement():
@@ -64,6 +67,7 @@ def get_placement():
     output = f.read()
   except Exception as e:
     log.exception(e)
+    return "Error: %s" % e
   return output
 
 def get_security_groups():
@@ -78,6 +82,7 @@ def get_security_groups():
     output = f.read()
   except Exception as e:
     log.exception(e)
+    return "Error: %s" % e
   return output
 
 if __name__ == "__main__":
