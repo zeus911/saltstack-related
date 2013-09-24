@@ -81,4 +81,8 @@ def get_security_groups():
   return output
 
 if __name__ == "__main__":
-  print get_public_dns()
+  print "public dns = %s" % get_public_dns()
+  print "instance id = %s" % get_instance_id()
+  print "ec2 placement = %s" % get_placement()
+  print "security groups = %s" % get_security_groups()
+
