@@ -1,8 +1,14 @@
 #!/usr/bin/env python
 import urllib2
-# Reference: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html
+import logging
 
+TODO:  Add error handling
+TODO:  Add logging
+# Reference: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html
 # MetaData we want to make available using salt: public-hostname, public-ipv4, instance-id, placement, security-groups
+
+log = logging.getLogger(__name__)
+mainurl = "http://169.254.169.254/latest/meta-data/"
 
 def get_public_dns():
   '''A function to retrieve the public dns address of a server
@@ -10,9 +16,12 @@ def get_public_dns():
   CLI Example::
     salt stage3 hp_dns.get_public_dns
   '''
-  url = "http://169.254.169.254/latest/meta-data/public-hostname"
-  f = urllib2.urlopen(url)
-  output = f.read()
+  url = mainurl + "public-hostname"
+  try:
+    f = urllib2.urlopen(url)
+    output = f.read()
+  except Exception as e:
+    log.exception(e)
   return output
 
 def get_public_ipv4():
@@ -21,9 +30,12 @@ def get_public_ipv4():
   CLI Example::
     salt stage3 hp_dns.get_public_ipv4
   '''
-  url = "http://169.254.169.254/latest/meta-data/public-ipv4"
-  f = urllib2.urlopen(url)
-  output = f.read()
+  url = mainurl + "public-ipv4"
+  try:
+    f = urllib2.urlopen(url)
+    output = f.read()
+  except Exception as e:
+    log.exception(e)
   return output
 
 def get_instance_id():
@@ -32,9 +44,12 @@ def get_instance_id():
   CLI Example::
     salt stage3 hp_dns.get_instance_id
   '''
-  url = "http://169.254.169.254/latest/meta-data/instance-id"
-  f = urllib2.urlopen(url)
-  output = f.read()
+  url = mainurl + "instance-id"
+  try:
+    f = urllib2.urlopen(url)
+    output = f.read()
+  except Exception as e:
+    log.exception(e)
   return output
 
 def get_placement():
@@ -43,9 +58,12 @@ def get_placement():
   CLI Example::
     salt stage3 hp_dns.get_placement
   '''
-  url = "http://169.254.169.254/latest/meta-data/placement"
-  f = urllib2.urlopen(url)
-  output = f.read()
+  url = mainurl + "placement"
+  try:
+    f = urllib2.urlopen(url)
+    output = f.read()
+  except Exception as e:
+    log.exception(e)
   return output
 
 def get_security_groups():
@@ -54,9 +72,12 @@ def get_security_groups():
   CLI Example::
     salt stage3 hp_dns.get_security_groups
   '''
-  url = "http://169.254.169.254/latest/meta-data/security-groups"
-  f = urllib2.urlopen(url)
-  output = f.read()
+  url = mainurl + "security-groups"
+  try:
+    f = urllib2.urlopen(url)
+    output = f.read()
+  except Exception as e:
+    log.exception(e)
   return output
 
 if __name__ == "__main__":
